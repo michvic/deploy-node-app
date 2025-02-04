@@ -5,6 +5,7 @@ const PORT = 3000;
 
 app.get("/", async (req, res) => {
   await new Promise((resolve, reject) =>  setTimeout(resolve, 1500)) //Promise para simular chamada de API externa, banco de dados, etc...
+  console.log("promise resolved")
   res.send(`
     <h1>Servidor Node rodando no Kubernetes 🚀</h1>
     <p>Este pod está funcionando corretamente.</p>
