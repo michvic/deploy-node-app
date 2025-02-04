@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+spec:
+  replicas: 3  # Número de pods
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+        - name: node-app
+          image: node-app:v1  # Imagem Docker criada
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10  # Espera 10 segundos antes de verificar
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 5
